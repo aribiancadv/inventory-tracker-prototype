@@ -29,6 +29,8 @@ public class InvItems
     private String manufacturer;
     @Column
     private int price;
+    @Column
+    private String delcomment;
 
     private boolean deleted = Boolean.FALSE;
 
@@ -80,5 +82,15 @@ public class InvItems
     public boolean getDeleted()
     {
         return deleted;
+    }
+
+    public void setDeletionComment(String delcomment)
+    {
+        this.delcomment = delcomment;
+    }
+
+    public String getDeletionComment()
+    {
+        return delcomment;
     }
 }
