@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.javatpoint.model.InvItems;
+import com.javatpoint.service.DeleteRequestDTO;
 import com.javatpoint.service.ItemsService;
 //mark class as Controller
 @RestController
@@ -32,10 +33,14 @@ public class ItemsController
     }
 
     //creating a delete mapping that deletes a specified item
-    @DeleteMapping("/items/{itemid}")
-    private void deleteItem(@PathVariable("itemid") int itemid) 
+    @PostMapping("/items/delete")
+    private void deleteItem(@RequestBody DeleteRequestDTO delreq) 
     {
-        itemsService.delete(itemid);
+        InvItems itemToDelete = itemsService.getItemsById(delreq.getItemid());
+        itemToDelete.setDeletionComment(delreq.getDeletionComment());
+        itemsService.saveOrUpdate(itemToDelete);
+
+        itemsService.delete(delreq.getItemid());
     }
 
     //creating post mapping that post the item detail in the database

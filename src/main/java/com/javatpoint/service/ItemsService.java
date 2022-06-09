@@ -43,8 +43,8 @@ public class ItemsService
     }
 
     //deleting a specific record by using the method deleteById() of CrudRepository
-    public void delete(int id) 
-    {
+    public void delete(int id)
+    {        
         itemsRepository.deleteById(id);
     }
 
