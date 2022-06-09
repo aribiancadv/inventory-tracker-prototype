@@ -1,7 +1,6 @@
 package com.javatpoint.controller;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.javatpoint.model.InvItems;
 import com.javatpoint.service.DeleteRequestDTO;
 import com.javatpoint.service.ItemsService;
+import com.javatpoint.service.UndeleteRequestDTO;
 //mark class as Controller
 @RestController
 public class ItemsController 
@@ -20,9 +20,9 @@ public class ItemsController
     ItemsService itemsService;
     //creating a get mapping that retrieves all the items detail from the database 
     @GetMapping("/items")
-    private List<InvItems> getAllItems() 
+    private Iterable<InvItems> getAllItems() 
     {
-        return itemsService.getAllItems();
+        return itemsService.getAllItems(false);
     }
 
     //creating a get mapping that retrieves the detail of a specific item
@@ -57,5 +57,15 @@ public class ItemsController
     {
         itemsService.saveOrUpdate(items);
         return items;
+    }
+
+    @PutMapping("/items/undelete")
+    private InvItems undelete(@RequestBody UndeleteRequestDTO undelreq) 
+    {
+        InvItems itemToUndelete = itemsService.getItemsById(undelreq.getItemid());
+        itemsService.saveOrUpdate(itemToUndelete);
+        itemToUndelete.setDeleted(false);
+        itemToUndelete.setDeletionComment("");
+        return itemToUndelete;
     }
 }

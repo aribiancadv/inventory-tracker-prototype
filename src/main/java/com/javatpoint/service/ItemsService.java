@@ -22,14 +22,6 @@ public class ItemsService
     @Autowired
     private EntityManager entityManager;
 
-    //getting all items record by using the method findaAll() of CrudRepository
-    public List<InvItems> getAllItems() 
-    {
-        List<InvItems> items = new ArrayList<InvItems>();
-        itemsRepository.findAll().forEach(items1 -> items.add(items1));
-        return items;
-    }
-
     //getting a specific record by using the method findById() of CrudRepository
     public InvItems getItemsById(int id) 
     {
@@ -59,7 +51,7 @@ public class ItemsService
         return itemsRepository.save(invitem);
     }
 
-    public Iterable<InvItems> findAll(boolean isDeleted)
+    public Iterable<InvItems> getAllItems(boolean isDeleted)
     {
         Session session = entityManager.unwrap(Session.class);
         Filter filter = session.enableFilter("deletedItemFilter");
