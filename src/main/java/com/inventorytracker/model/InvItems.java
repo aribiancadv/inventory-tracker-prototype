@@ -1,11 +1,10 @@
-package com.javatpoint.model;
+package com.inventorytracker.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.Filter;
 import org.hibernate.annotations.FilterDef;
 import org.hibernate.annotations.ParamDef;
@@ -18,7 +17,6 @@ import org.hibernate.annotations.SQLDelete;
 @Filter(name = "deletedItemFilter", condition = "deleted = :isDeleted")
 public class InvItems
 {
-
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)

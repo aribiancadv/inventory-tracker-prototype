@@ -1,4 +1,4 @@
-package com.javatpoint;
+package com.inventorytracker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

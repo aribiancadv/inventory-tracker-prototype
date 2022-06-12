@@ -1,14 +1,9 @@
-package com.javatpoint.service;
-import java.util.ArrayList;
-import java.util.List;
-
+package com.inventorytracker.service;
 import javax.persistence.EntityManager;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.javatpoint.model.InvItems;
-import com.javatpoint.repository.ItemsRepository;
-
+import com.inventorytracker.model.InvItems;
+import com.inventorytracker.repository.ItemsRepository;
 import org.hibernate.Filter;
 import org.hibernate.Session;
 
@@ -58,6 +53,7 @@ public class ItemsService
         filter.setParameter("isDeleted", isDeleted);
         Iterable<InvItems> invitems = itemsRepository.findAll();
         session.disableFilter("deletedItemFilter");
+
         return invitems;
     }
 }

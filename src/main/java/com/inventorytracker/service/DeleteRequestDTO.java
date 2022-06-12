@@ -1,11 +1,9 @@
-package com.javatpoint.service;
-
+package com.inventorytracker.service;
 
 public class DeleteRequestDTO {
 
     private int itemid;
     private String delcomment;
-
 
     public DeleteRequestDTO(int itemid, String delcomment)
     {
@@ -31,6 +29,5 @@ public class DeleteRequestDTO {
     public String getDeletionComment()
     {
         return delcomment;
-    }
-    
+    }    
 }

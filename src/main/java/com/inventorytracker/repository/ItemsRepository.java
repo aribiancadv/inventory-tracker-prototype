@@ -1,7 +1,7 @@
-package com.javatpoint.repository;
+package com.inventorytracker.repository;
 import org.springframework.data.repository.CrudRepository;
 //repository that extends CrudRepository
-import com.javatpoint.model.InvItems;
+import com.inventorytracker.model.InvItems;
 public interface ItemsRepository extends CrudRepository<InvItems, Integer>
 {
 }

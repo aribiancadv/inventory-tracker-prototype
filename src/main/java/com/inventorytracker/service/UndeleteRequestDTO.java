@@ -1,4 +1,4 @@
-package com.javatpoint.service;
+package com.inventorytracker.service;
 
 public class UndeleteRequestDTO {
 
@@ -11,7 +11,6 @@ public class UndeleteRequestDTO {
 
     public UndeleteRequestDTO()
     {
-        
     }
 
     public int getItemid() 
@@ -22,6 +21,5 @@ public class UndeleteRequestDTO {
     public void setItemid(int itemid) 
     {
         this.itemid = itemid;
-    }
-    
+    }    
 }
