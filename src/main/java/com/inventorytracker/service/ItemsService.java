@@ -7,7 +7,6 @@ import com.inventorytracker.repository.ItemsRepository;
 import org.hibernate.Filter;
 import org.hibernate.Session;
 
-//defining the business logic
 @Service
 public class ItemsService 
 {
@@ -17,35 +16,65 @@ public class ItemsService
     @Autowired
     private EntityManager entityManager;
 
-    //getting a specific record by using the method findById() of CrudRepository
+    
+    /** 
+     * Get items from item repository by id.
+     * @param id
+     * @return InvItems
+     */
     public InvItems getItemsById(int id) 
     {
         return itemsRepository.findById(id).get();
     }
 
-    //saving a specific record by using the method save() of CrudRepository
+    
+    /** 
+     * Saves or updates to item repository.
+     * @param items
+     */
     public void saveOrUpdate(InvItems items) 
     {
         itemsRepository.save(items);
     }
 
-    //deleting a specific record by using the method deleteById() of CrudRepository
+    
+    /** 
+     * Deletes an item by id.
+     * @param id
+     */
     public void delete(int id)
     {        
         itemsRepository.deleteById(id);
     }
 
-    //updating a record
+    
+    /** 
+     * Updates an existing item.
+     * @param items
+     * @param itemid
+     */
     public void update(InvItems items, int itemid) 
     {
         itemsRepository.save(items);
     }
 
+    
+    /** 
+     * Creates an InvItems object.
+     * @param invitem
+     * @return InvItems
+     */
     public InvItems create(InvItems invitem)
     {
         return itemsRepository.save(invitem);
     }
 
+    
+    /** 
+     * Gets a list of all items by deletion status.
+     * @param isDeleted
+     * @return Iterable<InvItems>
+     */
     public Iterable<InvItems> getAllItems(boolean isDeleted)
     {
         Session session = entityManager.unwrap(Session.class);

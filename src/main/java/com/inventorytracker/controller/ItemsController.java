@@ -11,28 +11,41 @@ import com.inventorytracker.service.DeleteRequestDTO;
 import com.inventorytracker.service.ItemsService;
 import com.inventorytracker.service.UndeleteRequestDTO;
 
-//mark class as Controller
+
 @RestController
 public class ItemsController 
 {
-    //autowire the ItemsService class
     @Autowired
     ItemsService itemsService;
-    //creating a get mapping that retrieves all the items detail from the database 
+
+    
+    /** 
+     * Retrieve all items. NOTE: Does not return items marked as 'deleted'.
+     *  @return Iterable<InvItems>
+     */
     @GetMapping("/items")
     private Iterable<InvItems> getAllItems() 
     {
         return itemsService.getAllItems(false);
     }
 
-    //creating a get mapping that retrieves the detail of a specific item
+    
+    /** 
+     * Get individual item by item id.
+     * @param itemid
+     * @return InvItems
+     */
     @GetMapping("/items/{itemid}")
     private InvItems getItems(@PathVariable("itemid") int itemid) 
     {
         return itemsService.getItemsById(itemid);
     }
 
-    //creating a delete mapping that deletes a specified item
+    
+    /** 
+     * Deletes items (marks them as 'deleted' and adds a comment).
+     * @param delreq
+     */
     @PostMapping("/items/delete")
     private void deleteItem(@RequestBody DeleteRequestDTO delreq) 
     {
@@ -43,7 +56,12 @@ public class ItemsController
         itemsService.delete(delreq.getItemid());
     }
 
-    //creating post mapping that post the item detail in the database
+    
+    /** 
+     * Saves an item to the database.
+     * @param items
+     * @return int
+     */
     @PostMapping("/items")
     private int saveItem(@RequestBody InvItems items) 
     {
@@ -52,7 +70,12 @@ public class ItemsController
         return items.getItemid();
     }
 
-    //creating put mapping that updates the item detail 
+    
+    /** 
+     * Updates an existing item.
+     * @param items
+     * @return InvItems
+     */
     @PutMapping("/items")
     private InvItems update(@RequestBody InvItems items) 
     {
@@ -61,6 +84,12 @@ public class ItemsController
         return items;
     }
 
+    
+    /** 
+     * Undeletes an item marked as 'deleted'.
+     * @param undelreq
+     * @return InvItems
+     */
     @PutMapping("/items/undelete")
     private InvItems undelete(@RequestBody UndeleteRequestDTO undelreq) 
     {
