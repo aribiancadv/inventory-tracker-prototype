@@ -1,1 +1,1 @@
-# inventory-tracker-prottype
+# inventory-tracker-prototype
